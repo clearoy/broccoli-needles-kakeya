@@ -117,50 +117,11 @@
     <section class="panel" id="p-koch" data-title="Snowflake" data-part="I · Dimension">
       <div class="panel-head">
         <div class="kicker">02</div>
-        <h2>The Koch snowflake</h2>
+        <h2>The Koch curve</h2>
       </div>
-      <div class="panel-body split">
-        <div class="card canvas-card">
-          <canvas id="kochCanvas" aria-label="Koch snowflake"></canvas>
-          <div class="hud hud-tl">
-            <div class="seg" role="tablist">
-              <button class="seg-btn on" data-mode="iterate">Iterate</button>
-              <button class="seg-btn" data-mode="zoom">Zoom</button>
-            </div>
-          </div>
-          <div class="hud hud-br mono" id="kochHud"></div>
-        </div>
-
-        <aside class="side">
-          <div class="iter">
-            <button class="round-btn" id="kMinus" aria-label="Previous iteration">−</button>
-            <div class="iter-n"><span class="iter-lbl">$n$</span><span id="kN" class="iter-val">0</span></div>
-            <button class="round-btn" id="kPlus" aria-label="Next iteration">+</button>
-            <button class="round-btn play" id="kPlay" aria-label="Play">
-              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-            </button>
-          </div>
-
-          <div class="stat">
-            <div class="stat-row"><span class="stat-lbl">$L_n / L_0 = \left(\tfrac43\right)^{n}$</span><span class="stat-val mono" id="kLen">1.00</span></div>
-            <div class="meter"><span id="kLenBar"></span></div>
-            <div class="stat-lim">$\longrightarrow \infty$</div>
-          </div>
-          <div class="stat">
-            <div class="stat-row"><span class="stat-lbl">$A_n / A_0$</span><span class="stat-val mono" id="kArea">1.000</span></div>
-            <div class="meter"><span id="kAreaBar"></span><i class="meter-cap" style="left:62.5%"></i></div>
-            <div class="stat-lim">$\longrightarrow \tfrac85$</div>
-          </div>
-
-          <div class="verdict">
-            <div class="v-row"><span>$\mathcal{H}^1(K) = \infty$</span><span class="v-note">too long for a curve</span></div>
-            <div class="v-row"><span>$\mathcal{H}^2(K) = 0$</span><span class="v-note">too thin for a region</span></div>
-            <div class="v-big">$1 \lt \dim K \lt 2\ ?$</div>
-          </div>
-          <div class="verdict accent">
-            $$3^{d} = 4 \;\Longrightarrow\; d = \frac{\log 4}{\log 3} \approx 1.2619$$
-          </div>
-        </aside>
+      <div class="panel-body koch-cover">
+        <svg id="kochCover" class="koch-svg" role="img" aria-label="Koch curve covered by 3 squares; the same curve three times larger needs 12 squares"></svg>
+        <div class="koch-eq">$$\text{size}\times 3 \;\Longrightarrow\; \text{squares}\times 4 \qquad 3^{d} = 4 \;\Longrightarrow\; d = \frac{\log 4}{\log 3} \approx 1.26$$</div>
       </div>
     </section>
 
