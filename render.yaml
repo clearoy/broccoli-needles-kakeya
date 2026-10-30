@@ -1,0 +1,11 @@
+# Render Blueprint: static site, no build step.
+services:
+  - type: web
+    name: fractional-dimension
+    runtime: static
+    buildCommand: echo "static site, nothing to build"
+    staticPublishPath: ./site
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=300

@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fractional Dimension</title>
+  <meta name="description" content="Interactive presentation: from integer to fractional dimension, on the way to the Kakeya problem.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230b0d12'/%3E%3Cpath d='M6 22h20M9 22l7-12 7 12' stroke='%23e2c275' stroke-width='2.4' fill='none' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="vendor/fonts/fonts.css">
+  <link rel="stylesheet" href="vendor/katex/katex.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="vendor/katex/katex.min.js"></script>
+  <script defer src="vendor/katex/contrib/auto-render.min.js"></script>
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32"><path d="M5 23h22M8.5 23 16 10l7.5 13M12.2 16.6 16 23l3.8-6.4" /></svg>
+      </span>
+      <span class="brand-text">Fractional dimension <span class="brand-sub">→ Kakeya</span></span>
+    </div>
+    <nav class="tabs" id="tabs" aria-label="Sections">
+      <span class="tab-group">I · Dimension</span>
+      <!-- section tabs injected by main.js -->
+      <span class="tab-group tab-locked" title="Coming next">II · Kakeya</span>
+    </nav>
+    <div class="tools">
+      <button class="timer" id="timer" title="Click: start / pause · double-click: reset">10:00</button>
+      <button class="icon-btn" id="themeBtn" title="Theme (T)" aria-label="Toggle theme">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 0 0 16z" class="fill"/></svg>
+      </button>
+      <button class="icon-btn" id="fsBtn" title="Fullscreen (F)" aria-label="Fullscreen">
+        <svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="stage" id="stage">
+
+    <!-- ───────────── 01 · Integer dimension ───────────── -->
+    <section class="panel" id="p-integer" data-title="Integer">
+      <div class="panel-head">
+        <div class="kicker">01</div>
+        <h2>Integer dimension</h2>
+      </div>
+      <div class="panel-body integer">
+        <div class="hero-eq">
+          $$\dim V = k \iff V=\operatorname{span}\{v_1,\dots,v_k\},\quad v_1,\dots,v_k \text{ linearly independent}$$
+        </div>
+
+        <div class="tiles">
+          <figure class="tile">
+            <svg viewBox="0 0 160 160" class="shape">
+              <circle cx="80" cy="80" r="6" class="ink-fill"/>
+              <g class="frag" data-step="1"><text x="80" y="112" class="svg-note">same point</text></g>
+            </svg>
+            <figcaption><span class="dimnum">0</span><span class="dimname">point</span></figcaption>
+            <div class="copies frag" data-step="1">$2^0 = 1$</div>
+          </figure>
+
+          <figure class="tile">
+            <svg viewBox="0 0 160 160" class="shape">
+              <line x1="22" y1="88" x2="138" y2="88" class="ink-stroke"/>
+              <circle cx="22" cy="88" r="3.5" class="ink-fill"/><circle cx="138" cy="88" r="3.5" class="ink-fill"/>
+              <line x1="22" y1="104" x2="66" y2="104" class="basis" marker-end="url(#arr)"/>
+              <text x="44" y="122" class="basis-lbl">v₁</text>
+              <g class="frag" data-step="1">
+                <circle cx="80" cy="88" r="4.5" class="accent-fill"/>
+                <path d="M22 70 Q51 56 80 70 M80 70 Q109 56 138 70" class="split-arc"/>
+              </g>
+            </svg>
+            <figcaption><span class="dimnum">1</span><span class="dimname">line</span></figcaption>
+            <div class="copies frag" data-step="1">$2^1 = 2$</div>
+          </figure>
+
+          <figure class="tile">
+            <svg viewBox="0 0 160 160" class="shape">
+              <rect x="34" y="28" width="96" height="96" class="ink-stroke shape-fill"/>
+              <line x1="34" y1="138" x2="78" y2="138" class="basis" marker-end="url(#arr)"/>
+              <line x1="20" y1="124" x2="20" y2="80" class="basis" marker-end="url(#arr)"/>
+              <text x="56" y="155" class="basis-lbl">v₁</text>
+              <text x="8" y="104" class="basis-lbl">v₂</text>
+              <g class="frag" data-step="1">
+                <line x1="82" y1="28" x2="82" y2="124" class="subdiv"/>
+                <line x1="34" y1="76" x2="130" y2="76" class="subdiv"/>
+              </g>
+            </svg>
+            <figcaption><span class="dimnum">2</span><span class="dimname">plane</span></figcaption>
+            <div class="copies frag" data-step="1">$2^2 = 4$</div>
+          </figure>
+
+          <figure class="tile">
+            <svg viewBox="0 0 160 160" class="shape">
+              <path d="M62 102V32M62 102H132M62 102 30 130" class="ink-stroke hidden-edge"/>
+              <path d="M30 60h70v70H30z M30 60 62 32h70l-32 28 M100 130l32-28V32" class="ink-stroke shape-fill"/>
+              <line x1="30" y1="144" x2="66" y2="144" class="basis" marker-end="url(#arr)"/>
+              <line x1="16" y1="130" x2="16" y2="94" class="basis" marker-end="url(#arr)"/>
+              <line x1="138" y1="140" x2="154" y2="126" class="basis" marker-end="url(#arr)"/>
+              <text x="44" y="158" class="basis-lbl">v₁</text>
+              <text x="2" y="110" class="basis-lbl">v₂</text>
+              <text x="140" y="156" class="basis-lbl">v₃</text>
+              <g class="frag" data-step="1">
+                <path d="M65 60v70M30 95h70M46 46h70M81 60l32-28M100 95l32-28M116 46v70" class="subdiv"/>
+              </g>
+            </svg>
+            <figcaption><span class="dimnum">3</span><span class="dimname">space</span></figcaption>
+            <div class="copies frag" data-step="1">$2^3 = 8$</div>
+          </figure>
+        </div>
+
+        <div class="scaling frag" data-step="1">
+          <span class="scaling-tag">scale by $r$</span>
+          $$\#\{\text{copies}\} = r^{\,d}$$
+        </div>
+      </div>
+      <svg width="0" height="0" style="position:absolute">
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0 0L10 5L0 10z" class="arrowhead"/>
+          </marker>
+        </defs>
+      </svg>
+    </section>
+
+    <!-- ───────────── 02 · Koch snowflake ───────────── -->
+    <section class="panel" id="p-koch" data-title="Snowflake">
+      <div class="panel-head">
+        <div class="kicker">02</div>
+        <h2>The Koch snowflake</h2>
+      </div>
+      <div class="panel-body split">
+        <div class="card canvas-card">
+          <canvas id="kochCanvas" aria-label="Koch snowflake"></canvas>
+          <div class="hud hud-tl">
+            <div class="seg" role="tablist">
+              <button class="seg-btn on" data-mode="iterate">Iterate</button>
+              <button class="seg-btn" data-mode="zoom">Zoom</button>
+            </div>
+          </div>
+          <div class="hud hud-br mono" id="kochHud"></div>
+        </div>
+
+        <aside class="side">
+          <div class="iter">
+            <button class="round-btn" id="kMinus" aria-label="Previous iteration">−</button>
+            <div class="iter-n"><span class="iter-lbl">$n$</span><span id="kN" class="iter-val">0</span></div>
+            <button class="round-btn" id="kPlus" aria-label="Next iteration">+</button>
+            <button class="round-btn play" id="kPlay" aria-label="Play">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+          </div>
+
+          <div class="stat">
+            <div class="stat-row"><span class="stat-lbl">$L_n / L_0 = \left(\tfrac43\right)^{n}$</span><span class="stat-val mono" id="kLen">1.00</span></div>
+            <div class="meter"><span id="kLenBar"></span></div>
+            <div class="stat-lim">$\longrightarrow \infty$</div>
+          </div>
+          <div class="stat">
+            <div class="stat-row"><span class="stat-lbl">$A_n / A_0$</span><span class="stat-val mono" id="kArea">1.000</span></div>
+            <div class="meter"><span id="kAreaBar"></span><i class="meter-cap" style="left:62.5%"></i></div>
+            <div class="stat-lim">$\longrightarrow \tfrac85$</div>
+          </div>
+
+          <div class="verdict frag" data-step="1">
+            <div class="v-row"><span>$\mathcal{H}^1(K) = \infty$</span><span class="v-note">too long for a curve</span></div>
+            <div class="v-row"><span>$\mathcal{H}^2(K) = 0$</span><span class="v-note">too thin for a region</span></div>
+            <div class="v-big">$1 \lt \dim K \lt 2\ ?$</div>
+          </div>
+          <div class="verdict accent frag" data-step="2">
+            $$3^{d} = 4 \;\Longrightarrow\; d = \frac{\log 4}{\log 3} \approx 1.2619$$
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ───────────── 03 · Formal definitions ───────────── -->
+    <section class="panel" id="p-defs" data-title="Definitions">
+      <div class="panel-head">
+        <div class="kicker">03</div>
+        <h2>Two formal definitions</h2>
+      </div>
+      <div class="panel-body defs">
+        <article class="card def-card">
+          <header class="def-head"><span class="def-tag">Hausdorff</span></header>
+          <div class="def-math">
+            $$\mathcal{H}^s(E)=\lim_{\delta\to0}\ \inf\Big\{\sum_i(\operatorname{diam}U_i)^s \;:\; E\subset\bigcup_i U_i,\ \operatorname{diam}U_i\lt\delta\Big\}$$
+            $$\dim_H E=\inf\{s\ge 0:\ \mathcal{H}^s(E)=0\}$$
+          </div>
+          <svg class="jump" viewBox="0 0 420 150" aria-label="H^s(E) jumps from infinity to zero at the dimension">
+            <line x1="40" y1="120" x2="400" y2="120" class="axis"/>
+            <line x1="40" y1="120" x2="40" y2="14" class="axis"/>
+            <path d="M40 24H196" class="jump-line"/>
+            <path d="M212 120H396" class="jump-line"/>
+            <line x1="204" y1="18" x2="204" y2="126" class="jump-guide"/>
+            <circle cx="204" cy="72" r="5" class="jump-dot"/>
+            <text x="30" y="28" class="axis-lbl" text-anchor="end">∞</text>
+            <text x="30" y="124" class="axis-lbl" text-anchor="end">0</text>
+            <text x="204" y="144" class="axis-lbl strong svg-math" text-anchor="middle"><tspan font-style="normal">dim</tspan><tspan dy="4" font-size="12">H</tspan><tspan dy="-4"> E</tspan></text>
+            <text x="400" y="144" class="axis-lbl svg-math" text-anchor="end">s</text>
+            <text x="54" y="18" class="axis-lbl svg-math">𝓗<tspan dy="-7" font-size="12">s</tspan><tspan dy="7">(E)</tspan></text>
+          </svg>
+        </article>
+
+        <article class="card def-card">
+          <header class="def-head"><span class="def-tag">Minkowski (box-counting)</span></header>
+          <div class="def-math">
+            $$N(\varepsilon)=\min\#\{\varepsilon\text{-boxes covering }E\}$$
+            $$\dim_M E=\lim_{\varepsilon\to0}\frac{\log N(\varepsilon)}{\log(1/\varepsilon)}$$
+            <div class="def-alt frag" data-step="1">
+              $$\dim_M E \;=\; n-\lim_{\varepsilon\to0}\frac{\log \big|E_\varepsilon\big|}{\log \varepsilon}$$
+            </div>
+          </div>
+          <svg class="boxes-mini" viewBox="0 0 420 150" aria-hidden="true" id="miniBoxes"></svg>
+        </article>
+
+        <div class="defs-foot frag" data-step="2">
+          $$\dim_H E\;\le\;\underline{\dim}_M E\;\le\;\overline{\dim}_M E$$
+          <span class="foot-note">equal for the Koch curve: $\log 4/\log 3$</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────────── 04 · Box decay ───────────── -->
+    <section class="panel" id="p-boxes" data-title="Box decay">
+      <div class="panel-head">
+        <div class="kicker">04</div>
+        <h2>How fast does the cover vanish?</h2>
+      </div>
+      <div class="panel-body split boxes">
+        <div class="card canvas-card">
+          <canvas id="boxCanvas" aria-label="Box cover of the selected shape"></canvas>
+          <div class="hud hud-tl">
+            <div class="seg" id="shapeSeg">
+              <button class="seg-btn on" data-shape="line"><i class="sw s1"></i>Line</button>
+              <button class="seg-btn" data-shape="square"><i class="sw s2"></i>Square</button>
+              <button class="seg-btn" data-shape="koch"><i class="sw s3"></i>Koch</button>
+            </div>
+          </div>
+          <div class="hud hud-bl eps-ctl">
+            <button class="round-btn sm play" id="bPlay" aria-label="Play">
+              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+            <label class="eps-lbl mono" for="bEps">ε = <span id="bEpsTxt">1/2</span></label>
+            <input type="range" id="bEps" min="1" max="8" step="1" value="1">
+          </div>
+        </div>
+
+        <aside class="side boxes-side">
+          <div class="readouts">
+            <div class="ro"><span class="ro-lbl">$N(\varepsilon)$</span><span class="ro-val mono" id="bN">4</span></div>
+            <div class="ro"><span class="ro-lbl">$A(\varepsilon)=N\varepsilon^2$</span><span class="ro-val mono" id="bA">1.000</span></div>
+          </div>
+          <div class="card chart-card">
+            <svg id="decayChart" class="chart" role="img" aria-label="log-log plot of covered area against scale"></svg>
+            <div class="tip" id="chartTip" hidden></div>
+          </div>
+          <table class="dim-table" id="dimTable">
+            <thead><tr><th></th><th>decay rate</th><th>$d = 2 - \text{rate}$</th></tr></thead>
+            <tbody></tbody>
+          </table>
+          <div class="verdict accent frag" data-step="1">
+            $$A(\varepsilon)\;\sim\;\varepsilon^{\,2-d}$$
+            <div class="v-note center">dimension lost $=$ decay rate of the area</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ───────────── 05 · Broccoli ───────────── -->
+    <section class="panel" id="p-broccoli" data-title="Guess">
+      <div class="panel-head">
+        <div class="kicker">05</div>
+        <h2>Your guess</h2>
+      </div>
+      <div class="panel-body split broc">
+        <div class="card canvas-card broc-card">
+          <canvas id="brocCanvas" aria-label="Romanesco broccoli, recursively generated"></canvas>
+          <div class="hud hud-bl mono hint" id="brocHint">click to zoom</div>
+          <div class="hud hud-br"><button class="ghost-btn" id="brocReset">reset</button></div>
+        </div>
+        <aside class="side broc-side">
+          <div class="question">$$\dim\ \partial\big(\text{broccoli}\big) = \ ?$$</div>
+
+          <div class="guess">
+            <div class="guess-val"><span class="mono" id="guessVal">2.30</span></div>
+            <div class="scale" id="scale">
+              <div class="scale-track"></div>
+              <div class="scale-mark you" id="markYou"></div>
+              <div class="scale-mark truth" id="markTruth"><span>≈ 2.66</span></div>
+              <div class="scale-ticks">
+                <span style="left:0%">2<em>surface</em></span>
+                <span style="left:50%">2.5</span>
+                <span style="left:100%">3<em>solid</em></span>
+              </div>
+            </div>
+            <input type="range" id="guess" min="2" max="3" step="0.01" value="2.30" aria-label="Your guess">
+          </div>
+
+          <div class="reveal-row">
+            <button class="primary-btn" id="revealBtn">Reveal</button>
+          </div>
+          <div class="answer frag" data-step="1">
+            <div class="answer-big">$\approx 2.66$</div>
+            <div class="answer-src">box-counting on green broccoli · S.-H. Kim (2004) · cauliflower $\approx 2.88$</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footbar">
+    <div class="progress"><span id="progress"></span></div>
+    <div class="keys mono"><kbd>←</kbd><kbd>→</kbd> step <kbd>1</kbd>–<kbd>5</kbd> jump <kbd>F</kbd> fullscreen <kbd>T</kbd> theme</div>
+  </footer>
+</div>
+</body>
+</html>
