@@ -3,29 +3,30 @@
 An interactive single-page dashboard for a 10-minute talk introducing fractional
 dimension on the way to the Kakeya problem.
 
+A single page that you simply scroll; each section fills one screen and its
+animation starts when it scrolls into view.
+
 **Part I · Dimension**
 
-| # | Panel | What it shows |
-|---|-------|---------------|
-| 01 | Integer | dimension as the size of a basis; scaling by 2 gives 2^d copies |
-| 02 | Snowflake | Koch iterations (length → ∞, area → 8/5) and a self-similar infinite zoom |
-| 03 | Definitions | Hausdorff and Minkowski (box-counting) dimension |
-| 04 | Box decay | live ε-box covers of a line, a square and the Koch curve; area A(ε) ~ ε^(2−d) on a log–log plot |
-| 05 | Guess | a recursive Romanesco broccoli; the audience guesses the dimension of its surface |
+| # | Section | What it shows |
+|---|---------|---------------|
+| 01 | Integer dimension | basis definition; scaling by 2 gives 2^d copies |
+| 02 | Koch snowflake | iterations (length → ∞, area → 8/5) and a self-similar zoom |
+| 03 | Two definitions | Hausdorff and Minkowski (box-counting) dimension |
+| 04 | Box decay | ε-box covers of a line, a square and the Koch curve; A(ε) ~ ε^(2−d) |
+| 05 | Your guess | Romanesco broccoli; guess the surface dimension, then reveal |
 
-## Presenting
+**Part II · Kakeya**
 
-| Key | Action |
-|-----|--------|
-| `→` / `Space` / `PageDown` | next reveal, then next panel (works with clickers) |
-| `←` / `PageUp` | back |
-| `1`–`5` | jump to panel |
-| `F` | fullscreen |
-| `T` | light / dark theme (light is often better on projectors) |
+| # | Section | What it shows |
+|---|---------|---------------|
+| 06 | Turn a needle | U-turns in a disk, triangle and deltoid; short history 1917–2025 |
+| 07 | Translation | moving to a parallel line costs area θ, so the problem becomes a Kakeya set |
+| 08 | Perron tree | 2ⁿ triangles slid together; area of the tree → 0 |
+| 09 | Dimension 2 | δ-tubes, multiplicity m(x), and the Cauchy–Schwarz argument |
 
-The timer in the top-right counts down 10:00 (click to start/pause, double-click to reset).
-
-Everything, including KaTeX and fonts, is self-hosted in `site/vendor/`, so the page works offline.
+`T` toggles light/dark (light is often better on projectors), `F` is fullscreen.
+KaTeX and fonts are self-hosted in `site/vendor/`, so the page works offline.
 
 ## Run locally
 

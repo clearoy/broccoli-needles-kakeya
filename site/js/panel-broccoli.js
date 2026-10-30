@@ -25,7 +25,7 @@ function makeSprite(hueShift) {
   return c;
 }
 
-export function initBroccoli(panel, deck) {
+export function initBroccoli(panel) {
   const canvas = panel.querySelector('#brocCanvas');
   const ctx = canvas.getContext('2d');
   const card = panel.querySelector('.broc-card');
@@ -127,7 +127,8 @@ export function initBroccoli(panel, deck) {
     markYou.style.left = pos(v);
   }
   slider.addEventListener('input', updateGuess);
-  revealBtn.addEventListener('click', () => deck.setStep(1));
+  const answer = panel.querySelector('.answer');
+  revealBtn.addEventListener('click', () => { setRevealed(true); answer.classList.add('shown'); });
   updateGuess();
 
   function setRevealed(on) {
@@ -140,6 +141,5 @@ export function initBroccoli(panel, deck) {
   return {
     enter() { draw(); },
     leave() {},
-    step(s) { setRevealed(s >= 1); },
   };
 }
