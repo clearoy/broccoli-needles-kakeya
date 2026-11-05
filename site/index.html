@@ -227,51 +227,53 @@
       </div>
     </section>
 
-    <!-- ───────────── 07 · Dimension 2 ───────────── -->
-    <section class="panel" id="p-cs" data-title="dim = 2" data-part="II · Kakeya">
+    <!-- ───────────── 07 · Kakeya conjecture ───────────── -->
+    <section class="panel" id="p-cs" data-title="Conjecture" data-part="II · Kakeya">
       <div class="panel-head">
         <div class="kicker">07</div>
-        <h2>Area → 0, but dimension = 2</h2>
+        <h2>Kakeya Conjecture in 2 dimensions</h2>
       </div>
-      <div class="panel-body split cs">
-        <div class="card canvas-card">
-          <canvas id="tubeCanvas" aria-label="Multiplicity of overlapping delta-tubes"></canvas>
-          <div class="hud hud-tl">
-            <div class="seg" id="deltaSeg">
-              <button class="seg-btn" data-delta="8">δ = 1/8</button>
-              <button class="seg-btn on" data-delta="16">1/16</button>
-              <button class="seg-btn" data-delta="32">1/32</button>
-              <button class="seg-btn" data-delta="64">1/64</button>
-            </div>
-          </div>
-          <div class="hud hud-bl ledger mono" id="ledger"></div>
+      <div class="panel-body cs">
+        <div class="conj">
+          <span class="conj-tag">Conjecture</span>
+          <span class="conj-body">Every Kakeya set $K\subset\mathbb{R}^n$ has dimension $n$.</span>
+          <span class="conj-note">$n=2$: Davies 1971 · $n=3$: Wang–Zahl 2025 · $n\ge 4$: open</span>
         </div>
 
-        <aside class="side chain">
-          <div class="chain-row">
-            $$m(x) = \#\{T : x\in T\},\qquad E=\bigcup_T T$$
+        <div class="split cs-proof">
+          <div class="card canvas-card">
+            <canvas id="tubeCanvas" aria-label="Multiplicity of overlapping tubes"></canvas>
           </div>
-          <div class="chain-row">
-            $$\int m\,dx = \sum_T |T| \approx \delta^{-1}\cdot\delta = 1$$
-          </div>
-          <div class="chain-row">
-            <div class="chain-flex">
-              <div>$$\int m^2\,dx = \sum_{i,j}|T_i\cap T_j| \lesssim \sum_{i,j}\frac{\delta^2}{|\theta_i-\theta_j|+\delta} \approx \log\tfrac1\delta$$</div>
-              <svg class="cross" viewBox="0 0 120 80" aria-hidden="true">
-                <g transform="rotate(-8 60 40)"><rect x="-10" y="33" width="140" height="14" class="tube-a"/></g>
-                <g transform="rotate(24 60 40)"><rect x="-10" y="33" width="140" height="14" class="tube-b"/></g>
-                <path d="M47.5 33.2 L77 33.2 L72.5 46.8 L43 46.8 Z" transform="rotate(-8 60 40)" class="tube-x"/>
-                <text x="60" y="76" text-anchor="middle" class="axis-lbl strong">≈ δ²/θ</text>
-              </svg>
+
+          <aside class="side chain">
+            <div class="chain-row"><i>1</i>
+              $$\delta\text{-tubes } T_1,\dots,T_{1/\delta} \subset K_\delta \text{ in separated directions},\qquad m(x)=\#\{i : x\in T_i\}$$
             </div>
-          </div>
-          <div class="chain-row hl">
-            $$1 \approx \Big(\int_E m\,dx\Big)^2 \le \int_E 1\cdot\int_E m^2\,dx \lesssim |E|\,\log\tfrac1\delta$$
-          </div>
-          <div class="chain-row accent">
-            $$|E| \gtrsim \frac{1}{\log(1/\delta)} \;\gg\; \delta^{\,2-d}\quad\Longrightarrow\quad \dim K = 2$$
-          </div>
-        </aside>
+            <div class="chain-row"><i>2</i>
+              $$\int m = \sum_i |T_i| \approx 1$$
+            </div>
+            <div class="chain-row"><i>3</i>
+              <div class="chain-flex">
+                <div>$$\int m^2 = \sum_{i,j}|T_i\cap T_j| \lesssim \sum_{i,j}\frac{\delta^2}{|\theta_i-\theta_j|+\delta} \approx \log\tfrac1\delta$$</div>
+                <svg class="cross" viewBox="0 0 120 80" aria-hidden="true">
+                  <g transform="rotate(-8 60 40)"><rect x="-10" y="33" width="140" height="14" class="tube-a"/></g>
+                  <g transform="rotate(24 60 40)"><rect x="-10" y="33" width="140" height="14" class="tube-b"/></g>
+                  <path d="M47.5 33.2 L77 33.2 L72.5 46.8 L43 46.8 Z" transform="rotate(-8 60 40)" class="tube-x"/>
+                  <text x="60" y="76" text-anchor="middle" class="axis-lbl strong">≈ δ²/θ</text>
+                </svg>
+              </div>
+            </div>
+            <div class="chain-row"><i>4</i>
+              $$1 \approx \Big(\int_{K_\delta} m\Big)^2 \le |K_\delta|\int m^2 \;\Longrightarrow\; |K_\delta| \gtrsim \frac{1}{\log(1/\delta)}$$
+            </div>
+            <div class="chain-row"><i>5</i>
+              $$|K_\delta| \lesssim N(\delta)\,\delta^2 \;\Longrightarrow\; N(\delta) \gtrsim \frac{\delta^{-2}}{\log(1/\delta)}$$
+            </div>
+            <div class="chain-row key">
+              $$N(\delta)\sim\delta^{-d} \;\Longrightarrow\; \delta^{-d} \gtrsim \frac{\delta^{-2}}{\log(1/\delta)} \;\Longrightarrow\; d = 2$$
+            </div>
+          </aside>
+        </div>
       </div>
     </section>
 

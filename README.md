@@ -21,7 +21,7 @@ animation starts when it scrolls into view.
 | 04 | Turn a needle | U-turns in a disk, triangle and deltoid; short history 1917–2025 |
 | 05 | Kakeya set definition | a unit segment in every direction |
 | 06 | Perron tree | 2ⁿ triangles slid together; area of the tree → 0 |
-| 07 | Dimension 2 | δ-tubes, multiplicity m(x), and the Cauchy–Schwarz argument |
+| 07 | Kakeya conjecture in 2 dimensions | the conjecture in ℝⁿ, and the Cauchy–Schwarz proof that N(δ) ~ δ^-d forces d = 2 |
 
 `T` toggles light/dark (light is often better on projectors), `F` is fullscreen.
 KaTeX and fonts are self-hosted in `site/vendor/`, so the page works offline.

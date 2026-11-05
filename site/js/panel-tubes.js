@@ -1,7 +1,7 @@
 import { fitCanvas, token, onResize } from './util.js';
 
-// 1/δ tubes of size δ × 1, one per direction jπ/N. The multiplicity m(x)
-// is computed on a grid; the ledger checks (∫m)² ≤ |E| ∫m² live.
+// 1/δ tubes of size δ × 1, one per direction jπ/N, with their multiplicity
+// m(x) drawn as a heatmap.
 
 const G = 400;          // grid resolution over the world square [-1, 1]^2
 const PX = 2 / G;       // world size of one cell
@@ -46,11 +46,11 @@ const hex = h => { const n = parseInt(h.slice(1), 16); return [(n >> 16) & 255, 
 export function initTubes(panel) {
   const canvas = panel.querySelector('#tubeCanvas');
   const ctx = canvas.getContext('2d');
-  const ledger = panel.querySelector('#ledger');
   const img = document.createElement('canvas');
   img.width = img.height = G;
   const ictx = img.getContext('2d');
-  let N = 16, data = null;
+  const N = 24; // number of tubes, i.e. 1/δ
+  let data = null;
 
   function compute() {
     data = multiplicity(N);
@@ -66,11 +66,6 @@ export function initTubes(panel) {
       im.data[o + 3] = 150 + 105 * t;
     }
     ictx.putImageData(im, 0, 0);
-    const d = data;
-    ledger.innerHTML = `
-      <div><span>∫ m</span><b>${d.int1.toFixed(2)}</b></div>
-      <div><span>∫ m²</span><b>${d.int2.toFixed(2)}</b></div>
-      <div class="hl"><span>|E|</span><b>${d.E.toFixed(2)}</b></div>`;
     draw();
   }
 
@@ -83,13 +78,8 @@ export function initTubes(panel) {
     ctx.drawImage(img, (w - s) / 2, (h - s) / 2, s, s);
   }
 
-  panel.querySelectorAll('[data-delta]').forEach(b => b.addEventListener('click', () => {
-    N = +b.dataset.delta;
-    panel.querySelectorAll('[data-delta]').forEach(x => x.classList.toggle('on', x === b));
-    compute();
-  }));
   onResize(canvas, draw);
   document.addEventListener('themechange', () => { if (data) compute(); });
 
-  return { enter() { compute(); }, leave() {} };
+  return { enter() { if (!data) compute(); }, leave() {} };
 }
