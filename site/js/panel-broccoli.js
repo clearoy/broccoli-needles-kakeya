@@ -25,26 +25,16 @@ function makeSprite(hueShift) {
   return c;
 }
 
-export function initBroccoli(panel) {
-  const canvas = panel.querySelector('#brocCanvas');
+// Draws the Romanesco head on `canvas`; `r.view` (screen = world * z + o)
+// can be changed for zooming before calling `r.draw()` again.
+export function romanesco(canvas) {
   const ctx = canvas.getContext('2d');
-  const card = panel.querySelector('.broc-card');
-  const hint = panel.querySelector('#brocHint');
   const sprites = [makeSprite(-4), makeSprite(2), makeSprite(8)];
-  const slider = panel.querySelector('#guess');
-  const $val = panel.querySelector('#guessVal');
-  const markYou = panel.querySelector('#markYou');
-  const markTruth = panel.querySelector('#markTruth');
-  const scale = panel.querySelector('#scale');
-  const revealBtn = panel.querySelector('#revealBtn');
-
-  // view: screen = world * z + o   (world = canvas px at z = 1)
-  let view = { z: 1, ox: 0, oy: 0 };
+  const r = { view: { z: 1, ox: 0, oy: 0 }, draw };
   let W = 1, H = 1;
-  let busy = null;
 
   function floret(x, y, R, depth, seed) {
-    const sx = x * view.z + view.ox, sy = y * view.z + view.oy, sr = R * view.z;
+    const sx = x * r.view.z + r.view.ox, sy = y * r.view.z + r.view.oy, sr = R * r.view.z;
     if (sx + sr < 0 || sy + sr < 0 || sx - sr > W || sy - sr > H) return;
     if (sr < LEAF_PX || depth >= MAX_DEPTH) {
       const d = sr * 2.3;
@@ -77,8 +67,8 @@ export function initBroccoli(panel) {
     ctx.clearRect(0, 0, W, H);
     const R = Math.min(W, H) * 0.46;
     // soft shadow halo
-    const sx = (W / 2) * view.z + view.ox, sy = (H / 2) * view.z + view.oy;
-    const halo = ctx.createRadialGradient(sx, sy, R * view.z * 0.9, sx, sy, R * view.z * 1.12);
+    const sx = (W / 2) * r.view.z + r.view.ox, sy = (H / 2) * r.view.z + r.view.oy;
+    const halo = ctx.createRadialGradient(sx, sy, R * r.view.z * 0.9, sx, sy, R * r.view.z * 1.12);
     halo.addColorStop(0, 'rgba(0,0,0,0.35)');
     halo.addColorStop(1, 'rgba(0,0,0,0)');
     ctx.fillStyle = halo;
@@ -86,28 +76,46 @@ export function initBroccoli(panel) {
     floret(W / 2, H / 2, R, 0, 1);
   }
 
+  return r;
+}
+
+export function initBroccoli(panel) {
+  const canvas = panel.querySelector('#brocCanvas');
+  const card = panel.querySelector('.broc-card');
+  const hint = panel.querySelector('#brocHint');
+  const slider = panel.querySelector('#guess');
+  const $val = panel.querySelector('#guessVal');
+  const markYou = panel.querySelector('#markYou');
+  const markTruth = panel.querySelector('#markTruth');
+  const scale = panel.querySelector('#scale');
+  const revealBtn = panel.querySelector('#revealBtn');
+
+  const rom = romanesco(canvas);
+  const draw = () => rom.draw();
+  let busy = null;
+
   function zoomTo(px, py, factor) {
     if (busy) return;
-    const start = { ...view };
+    const start = { ...rom.view };
     const zEnd = clamp(start.z * factor, 1, 4000);
     const f = zEnd / start.z;
     hint.style.opacity = 0;
     busy = tween(1300, t => {
       const e = easeInOut(t), k = Math.pow(f, e);
-      view = { z: start.z * k, ox: px - (px - start.ox) * k, oy: py - (py - start.oy) * k };
+      rom.view = { z: start.z * k, ox: px - (px - start.ox) * k, oy: py - (py - start.oy) * k };
       draw();
     }, () => { busy = null; });
   }
 
   function reset() {
     if (busy) return;
-    const start = { ...view };
+    const start = { ...rom.view };
     busy = tween(900, t => {
       const e = easeInOut(t);
       const z = Math.exp(Math.log(start.z) * (1 - e));
-      view = { z, ox: start.ox * (1 - e), oy: start.oy * (1 - e) };
+      rom.view = { z, ox: start.ox * (1 - e), oy: start.oy * (1 - e) };
       draw();
-    }, () => { busy = null; view = { z: 1, ox: 0, oy: 0 }; hint.style.opacity = 1; draw(); });
+    }, () => { busy = null; rom.view = { z: 1, ox: 0, oy: 0 }; hint.style.opacity = 1; draw(); });
   }
 
   card.addEventListener('click', e => {

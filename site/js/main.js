@@ -1,6 +1,7 @@
-import { initKoch } from './panel-koch.js';
+import { initKoch, renderKochCurve } from './panel-koch.js';
 import { initBoxes, renderMiniBoxes } from './panel-boxes.js';
-import { initBroccoli } from './panel-broccoli.js';
+import { initBroccoli, romanesco } from './panel-broccoli.js';
+import { onResize } from './util.js';
 import { initNeedle } from './panel-needle.js';
 import { initSlide } from './panel-slide.js';
 import { initPerron } from './panel-perron.js';
@@ -41,6 +42,10 @@ function boot() {
     throwOnError: false,
   });
   renderMiniBoxes(document.getElementById('miniBoxes'));
+  renderKochCurve(document.getElementById('intKoch'));
+  const introBroc = document.getElementById('intBroc');
+  const introRom = romanesco(introBroc);
+  onResize(introBroc, () => introRom.draw());
 
   const modules = new Map();
   for (const [id, init] of [

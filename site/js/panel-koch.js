@@ -7,7 +7,7 @@ const SVG = 'http://www.w3.org/2000/svg';
 const H = Math.sqrt(3) / 2;
 
 // Koch curve from (0,0) to (L,0), bumps pointing up (y up)
-function koch(L, depth) {
+export function koch(L, depth) {
   let pts = [[0, 0], [L, 0]];
   for (let k = 0; k < depth; k++) {
     const out = [];
@@ -69,4 +69,15 @@ export function initKoch(panel) {
   el('path', { d: `M${1.12} -0.12 H${X2 - 0.12}`, class: 'kc-arrow', 'marker-end': 'url(#arr)' });
 
   return { enter() {}, leave() {} };
+}
+
+// The plain curve for section 01.
+export function renderKochCurve(svg) {
+  const pts = koch(1, 6);
+  svg.setAttribute('viewBox', `-0.03 ${-0.32} 1.06 0.36`);
+  const e = document.createElementNS(SVG, 'polyline');
+  e.setAttribute('points', pts.map(([x, y]) => `${x},${-y}`).join(' '));
+  e.setAttribute('class', 'kc-curve');
+  e.style.strokeWidth = '0.004';
+  svg.appendChild(e);
 }
