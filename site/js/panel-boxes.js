@@ -296,8 +296,8 @@ export function initBoxes(panel) {
 
 // Small static illustration for the Minkowski card: a curve and its ε-cover.
 export function renderMiniBoxes(svg) {
-  const W = 420, H = 150, c = 15;
-  const f = x => 78 + 34 * Math.sin(x / 38) + 14 * Math.sin(x / 11 + 1);
+  const W = 420, H = 270, c = 15;
+  const f = x => 128 + 66 * Math.sin(x / 42) + 24 * Math.sin(x / 13 + 1);
   const x0 = 40, x1 = 400;
   const cells = new Set();
   for (let x = x0; x <= x1; x += 0.5) cells.add(`${Math.floor(x / c)},${Math.floor(f(x) / c)}`);
