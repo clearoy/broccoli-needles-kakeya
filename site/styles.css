@@ -424,3 +424,12 @@ kbd {
 
 /* 05 Kakeya set definition */
 .kset { display: grid; place-items: center; font-size: clamp(22px, 2.9vw, 52px); }
+
+/* 06 Perron tree */
+.perron-side { gap: 5vh; }
+.perron-area { display: flex; flex-direction: column; gap: 1vh; }
+.perron-area .ro-lbl { font-size: clamp(16px, 1.3vw, 22px); }
+#pArea { font-size: clamp(60px, 7vw, 120px); line-height: 1; }
+.perron-bound { font-size: clamp(15px, 1.25vw, 22px); color: var(--accent); }
+.perron-bound .katex-display { margin: 0; text-align: left; }
+.perron-bound .katex-display > .katex { text-align: left; }

@@ -214,29 +214,13 @@
       <div class="panel-body split">
         <div class="card canvas-card">
           <canvas id="perronCanvas" aria-label="Perron tree construction"></canvas>
-          <div class="hud hud-tl">
-            <div class="seg" id="perronSeg">
-              <button class="seg-btn on" data-copies="1">60° of directions</button>
-              <button class="seg-btn" data-copies="3">all directions</button>
-            </div>
-          </div>
-          <div class="hud hud-bl eps-ctl">
-            <button class="round-btn sm play" id="pPlay" aria-label="Build">
-              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-            </button>
-            <label class="eps-lbl mono" for="pN"><span id="pNTxt">2⁶</span> pieces</label>
-            <input type="range" id="pN" min="1" max="10" step="1" value="6">
-          </div>
-          <div class="hud hud-br mono" id="perronHud"></div>
         </div>
-        <aside class="side">
-          <div class="readouts one">
-            <div class="ro"><span class="ro-lbl">$|\,\text{tree}\,| \,/\, |T|$</span><span class="ro-val mono big" id="pArea">100%</span></div>
+        <aside class="side perron-side">
+          <div class="perron-area">
+            <span class="ro-lbl">$|\,\text{tree}\,| \,/\, |T|$</span>
+            <span class="mono" id="pArea">100%</span>
           </div>
-          <div class="card chart-card">
-            <svg id="perronChart" class="chart" role="img" aria-label="Area of the Perron tree for each number of pieces"></svg>
-          </div>
-          <div class="verdict accent">
+          <div class="perron-bound">
             $$|\,\text{tree}\,| \;\le\; \big(\alpha^{2n} + 2(1-\alpha)\big)\,|T| \;\xrightarrow[\;n\to\infty\;]{}\; 0$$
           </div>
         </aside>
