@@ -433,3 +433,5 @@ kbd {
 .perron-bound { font-size: clamp(15px, 1.25vw, 22px); color: var(--accent); }
 .perron-bound .katex-display { margin: 0; text-align: left; }
 .perron-bound .katex-display > .katex { text-align: left; }
+.kset-def { margin: 0; max-width: 22em; text-align: center; font-family: var(--serif); line-height: 1.3; }
+.kset-def em { color: var(--accent); }
