@@ -240,40 +240,76 @@
           <span class="conj-note">$n=2$: Davies 1971 · $n=3$: Wang–Zahl 2025 · $n\ge 4$: open</span>
         </div>
 
-        <div class="split cs-proof">
-          <div class="card canvas-card">
-            <canvas id="tubeCanvas" aria-label="Multiplicity of overlapping tubes"></canvas>
-          </div>
-
-          <aside class="side chain">
-            <div class="chain-row"><i>1</i>
-              $$\delta\text{-tubes } T_1,\dots,T_{1/\delta} \subset K_\delta \text{ in separated directions},\qquad m(x)=\#\{i : x\in T_i\}$$
+        <ol class="proof">
+          <li class="pr">
+            <span class="pr-lbl">Setup</span>
+            <div class="pr-body">
+              $$0\lt\delta\ll 1,\qquad K_\delta=\{x:\operatorname{dist}(x,K)\lt\delta\}$$
+              <p class="pr-note">Pick $1/\delta$ directions $\theta_1,\dots,\theta_{1/\delta}$, spaced $\delta$ apart. The unit segment of $K$ in direction $\theta_i$ thickens to a $\delta\times 1$ tube $T_i\subset K_\delta$.</p>
             </div>
-            <div class="chain-row"><i>2</i>
-              $$\int m = \sum_i |T_i| \approx 1$$
+            <div class="pr-fig pr-fig-tall"><canvas id="tubeCanvas" aria-label="Overlapping tubes, brighter where more of them meet"></canvas></div>
+          </li>
+          <li class="pr">
+            <span class="pr-lbl"><i>1</i>Multiplicity</span>
+            <div class="pr-body">
+              $$m(x)=\sum_i \mathbf 1_{T_i}(x)=\#\{i : x\in T_i\},\qquad E=\bigcup_i T_i\subset K_\delta$$
             </div>
-            <div class="chain-row"><i>3</i>
-              <div class="chain-flex">
-                <div>$$\int m^2 = \sum_{i,j}|T_i\cap T_j| \lesssim \sum_{i,j}\frac{\delta^2}{|\theta_i-\theta_j|+\delta} \approx \log\tfrac1\delta$$</div>
-                <svg class="cross" viewBox="0 0 120 80" aria-hidden="true">
-                  <g transform="rotate(-8 60 40)"><rect x="-10" y="33" width="140" height="14" class="tube-a"/></g>
-                  <g transform="rotate(24 60 40)"><rect x="-10" y="33" width="140" height="14" class="tube-b"/></g>
-                  <path d="M47.5 33.2 L77 33.2 L72.5 46.8 L43 46.8 Z" transform="rotate(-8 60 40)" class="tube-x"/>
-                  <text x="60" y="76" text-anchor="middle" class="axis-lbl strong">≈ δ²/θ</text>
-                </svg>
-              </div>
+          </li>
+          <li class="pr">
+            <span class="pr-lbl"><i>2</i>Total mass</span>
+            <div class="pr-body">
+              $$\int m = \sum_i |T_i| = \frac1\delta\cdot\delta = 1$$
             </div>
-            <div class="chain-row"><i>4</i>
-              $$1 \approx \Big(\int_{K_\delta} m\Big)^2 \le |K_\delta|\int m^2 \;\Longrightarrow\; |K_\delta| \gtrsim \frac{1}{\log(1/\delta)}$$
+          </li>
+          <li class="pr">
+            <span class="pr-lbl"><i>3</i>Two tubes</span>
+            <div class="pr-body">
+              $$|T_i\cap T_j|\approx\frac{\delta^2}{\sin|\theta_i-\theta_j|}\;\lesssim\;\frac{\delta^2}{|\theta_i-\theta_j|+\delta}$$
+              <p class="pr-note">The overlap is a parallelogram of height $\delta$ and side $\delta/\sin\theta$. When $\theta\lesssim\delta$ the tubes almost coincide and the overlap is at most $|T_i|=\delta$, hence the $+\delta$.</p>
             </div>
-            <div class="chain-row"><i>5</i>
-              $$|K_\delta| \lesssim N(\delta)\,\delta^2 \;\Longrightarrow\; N(\delta) \gtrsim \frac{\delta^{-2}}{\log(1/\delta)}$$
+            <figure class="pr-fig">
+              <svg class="cross" viewBox="0 0 220 124" aria-label="Two tubes of width delta crossing at angle theta; their overlap is a parallelogram">
+                <defs><clipPath id="crossClip"><rect width="220" height="124"/></clipPath></defs>
+                <g clip-path="url(#crossClip)">
+                  <polygon points="-10,54 230,54 230,70 -10,70" class="tube-a"/>
+                  <polygon points="0.29,111.27 212.20,-1.40 219.71,12.73 7.80,125.40" class="tube-b"/>
+                  <polygon points="77.91,70 111.99,70 142.09,54 108.01,54" class="tube-x"/>
+                </g>
+                <path d="M51.91 70 A26 26 0 0 0 54.95 82.21" class="cross-arc"/>
+                <text x="40" y="88" class="cross-lbl">θ</text>
+                <path d="M206 54v16M202 54h8M202 70h8" class="cross-dim"/>
+                <text x="213" y="66" class="cross-lbl">δ</text>
+              </svg>
+            </figure>
+          </li>
+          <li class="pr">
+            <span class="pr-lbl"><i>4</i>Overlap</span>
+            <div class="pr-body">
+              $$\int m^2=\sum_{i,j}|T_i\cap T_j| \;\lesssim\; \sum_i\,\sum_{k=0}^{1/\delta}\frac{\delta^2}{k\delta+\delta} \;=\; \sum_i\,\delta\sum_{k=0}^{1/\delta}\frac{1}{k+1} \;\approx\; \log\tfrac1\delta$$
+              <p class="pr-note">Group the pairs by angle $|\theta_i-\theta_j|=k\delta$; the harmonic sum gives the $\log$.</p>
             </div>
-            <div class="chain-row key">
-              $$N(\delta)\sim\delta^{-d} \;\Longrightarrow\; \delta^{-d} \gtrsim \frac{\delta^{-2}}{\log(1/\delta)} \;\Longrightarrow\; d = 2$$
+          </li>
+          <li class="pr">
+            <span class="pr-lbl"><i>5</i>Cauchy–Schwarz</span>
+            <div class="pr-body">
+              $$1=\Big(\int_E m\cdot 1\Big)^2\le |E|\int m^2 \lesssim |E|\,\log\tfrac1\delta \quad\Longrightarrow\quad |K_\delta|\ge|E|\gtrsim\frac{1}{\log(1/\delta)}$$
             </div>
-          </aside>
-        </div>
+          </li>
+          <li class="pr">
+            <span class="pr-lbl"><i>6</i>Count boxes</span>
+            <div class="pr-body">
+              $$K\subset\bigcup_{k=1}^{N(\delta)}Q_k \;\Longrightarrow\; K_\delta\subset\bigcup_{k}3Q_k \;\Longrightarrow\; |K_\delta|\le 9\,\delta^2\,N(\delta) \;\Longrightarrow\; N(\delta)\gtrsim\frac{\delta^{-2}}{\log(1/\delta)}$$
+              <p class="pr-note">$Q_k$ are boxes of side $\delta$; tripling each one covers the $\delta$-neighbourhood.</p>
+            </div>
+          </li>
+          <li class="pr pr-key">
+            <span class="pr-lbl">Conclusion</span>
+            <div class="pr-body">
+              $$N(\delta)\sim\delta^{-d}\;\Longrightarrow\;\delta^{-d}\gtrsim\frac{\delta^{-2}}{\log(1/\delta)}\;\Longrightarrow\;\delta^{\,2-d}\log\tfrac1\delta\gtrsim 1 \text{ as } \delta\to0\;\Longrightarrow\; d\ge 2$$
+              <p class="pr-note">If $d\lt 2$, then $\delta^{2-d}\log\frac1\delta\to 0$. And $d\le 2$ for every set in the plane, so $\dim K = 2$.</p>
+            </div>
+          </li>
+        </ol>
       </div>
     </section>
 
