@@ -19,7 +19,7 @@ animation starts when it scrolls into view.
 | # | Section | What it shows |
 |---|---------|---------------|
 | 04 | Turn a needle | U-turns in a disk, triangle and deltoid; short history 1917–2025 |
-| 05 | Translation | moving to a parallel line costs area θ, so the problem becomes a Kakeya set |
+| 05 | Kakeya set definition | a unit segment in every direction |
 | 06 | Perron tree | 2ⁿ triangles slid together; area of the tree → 0 |
 | 07 | Dimension 2 | δ-tubes, multiplicity m(x), and the Cauchy–Schwarz argument |
 

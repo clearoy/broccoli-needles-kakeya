@@ -194,37 +194,14 @@
       </div>
     </section>
 
-    <!-- ───────────── 05 · Translation ───────────── -->
-    <section class="panel" id="p-slide" data-title="Translation" data-part="II · Kakeya">
+    <!-- ───────────── 05 · Kakeya set ───────────── -->
+    <section class="panel" id="p-kset" data-title="Kakeya set" data-part="II · Kakeya">
       <div class="panel-head">
         <div class="kicker">05</div>
-        <h2>Parallel moves are almost free</h2>
+        <h2>Kakeya set definition</h2>
       </div>
-      <div class="panel-body split">
-        <div class="card canvas-card">
-          <canvas id="slideCanvas" aria-label="Moving a needle to a parallel line"></canvas>
-          <div class="hud hud-tl">
-            <div class="seg" id="thetaSeg">
-              <button class="seg-btn" data-theta="30">θ = 30°</button>
-              <button class="seg-btn on" data-theta="12">12°</button>
-              <button class="seg-btn" data-theta="4">4°</button>
-            </div>
-          </div>
-          <div class="hud hud-br"><button class="ghost-btn" id="slideReplay">replay</button></div>
-        </div>
-        <aside class="side">
-          <div class="readouts">
-            <div class="ro"><span class="ro-lbl">swept area $= 2\cdot\frac{\theta}{2}$</span><span class="ro-val mono" id="slideArea">0.209</span></div>
-            <div class="ro"><span class="ro-lbl">path length</span><span class="ro-val mono" id="slideLen">9.6</span></div>
-          </div>
-          <div class="verdict">
-            <div class="def-tag">Kakeya set</div>
-            $$K\subset\mathbb{R}^2 \text{ contains a unit segment in every direction}$$
-          </div>
-          <div class="verdict accent">
-            $$|K| \lt \varepsilon \;\Longrightarrow\; \text{U-turn in area} \lt 2\varepsilon$$
-          </div>
-        </aside>
+      <div class="panel-body kset">
+        $$K\subset\mathbb{R}^2 \text{ is a Kakeya set} \iff \forall\, e\in S^{1}\ \ \exists\, x\in\mathbb{R}^2 :\ \ x+[0,1]\,e\subset K$$
       </div>
     </section>
 

@@ -421,3 +421,6 @@ kbd {
 .kc-arrow-lbl { fill: var(--ink-3); font-family: var(--mono); font-size: 0.075px; }
 .koch-eq { font-size: clamp(16px, 1.6vw, 28px); text-align: center; }
 .koch-eq .katex-display { margin: 0; }
+
+/* 05 Kakeya set definition */
+.kset { display: grid; place-items: center; font-size: clamp(22px, 2.9vw, 52px); }

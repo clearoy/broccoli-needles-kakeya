@@ -3,7 +3,6 @@ import { renderMiniBoxes } from './mini-boxes.js';
 import { romanesco } from './romanesco.js';
 import { onResize } from './util.js';
 import { initNeedle } from './panel-needle.js';
-import { initSlide } from './panel-slide.js';
 import { initPerron } from './panel-perron.js';
 import { initTubes } from './panel-tubes.js';
 
@@ -50,7 +49,7 @@ function boot() {
   const modules = new Map();
   for (const [id, init] of [
     ['p-koch', initKoch],
-    ['p-needle', initNeedle], ['p-slide', initSlide], ['p-perron', initPerron], ['p-cs', initTubes],
+    ['p-needle', initNeedle], ['p-perron', initPerron], ['p-cs', initTubes],
   ]) {
     const el = document.getElementById(id);
     modules.set(el, init(el));
