@@ -1,4 +1,4 @@
-import { fitCanvas, onResize, tween, easeInOut, clamp } from './util.js';
+import { fitCanvas } from './util.js';
 
 // Romanesco seen from above: every floret is a Vogel (golden-angle) spiral of
 // smaller florets. Recursion stops once a floret is a few pixels wide, so
@@ -77,77 +77,4 @@ export function romanesco(canvas) {
   }
 
   return r;
-}
-
-export function initBroccoli(panel) {
-  const canvas = panel.querySelector('#brocCanvas');
-  const card = panel.querySelector('.broc-card');
-  const hint = panel.querySelector('#brocHint');
-  const slider = panel.querySelector('#guess');
-  const $val = panel.querySelector('#guessVal');
-  const markYou = panel.querySelector('#markYou');
-  const markTruth = panel.querySelector('#markTruth');
-  const scale = panel.querySelector('#scale');
-  const revealBtn = panel.querySelector('#revealBtn');
-
-  const rom = romanesco(canvas);
-  const draw = () => rom.draw();
-  let busy = null;
-
-  function zoomTo(px, py, factor) {
-    if (busy) return;
-    const start = { ...rom.view };
-    const zEnd = clamp(start.z * factor, 1, 4000);
-    const f = zEnd / start.z;
-    hint.style.opacity = 0;
-    busy = tween(1300, t => {
-      const e = easeInOut(t), k = Math.pow(f, e);
-      rom.view = { z: start.z * k, ox: px - (px - start.ox) * k, oy: py - (py - start.oy) * k };
-      draw();
-    }, () => { busy = null; });
-  }
-
-  function reset() {
-    if (busy) return;
-    const start = { ...rom.view };
-    busy = tween(900, t => {
-      const e = easeInOut(t);
-      const z = Math.exp(Math.log(start.z) * (1 - e));
-      rom.view = { z, ox: start.ox * (1 - e), oy: start.oy * (1 - e) };
-      draw();
-    }, () => { busy = null; rom.view = { z: 1, ox: 0, oy: 0 }; hint.style.opacity = 1; draw(); });
-  }
-
-  card.addEventListener('click', e => {
-    if (e.target.closest('button')) return;
-    const r = canvas.getBoundingClientRect();
-    const dpr = canvas.width / r.width;
-    zoomTo((e.clientX - r.left) * dpr, (e.clientY - r.top) * dpr, 6);
-  });
-  panel.querySelector('#brocReset').addEventListener('click', reset);
-  onResize(canvas, draw);
-
-  // ── guess ──
-  const pos = v => `${(v - 2) * 100}%`;
-  function updateGuess() {
-    const v = +slider.value;
-    $val.textContent = v.toFixed(2);
-    markYou.style.left = pos(v);
-  }
-  slider.addEventListener('input', updateGuess);
-  const answer = panel.querySelector('.answer');
-  revealBtn.addEventListener('click', () => { setRevealed(true); answer.classList.add('shown'); });
-  updateGuess();
-
-  function setRevealed(on) {
-    scale.classList.toggle('revealed', on);
-    markTruth.style.left = on ? pos(2.66) : pos(2);
-    revealBtn.disabled = on;
-  }
-  setRevealed(false);
-
-  return {
-    enter() { draw(); },
-    leave() {},
-  };
 }

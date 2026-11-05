@@ -10,20 +10,18 @@ animation starts when it scrolls into view.
 
 | # | Section | What it shows |
 |---|---------|---------------|
-| 01 | Integer dimension | basis definition; scaling by 2 gives 2^d copies |
-| 02 | Koch snowflake | iterations (length → ∞, area → 8/5) and a self-similar zoom |
-| 03 | Two definitions | Hausdorff and Minkowski (box-counting) dimension |
-| 04 | Box decay | ε-box covers of a line, a square and the Koch curve; A(ε) ~ ε^(2−d) |
-| 05 | Your guess | Romanesco broccoli; guess the surface dimension, then reveal |
+| 01 | Integer dimension | basis definition; line, plane, space, and two shapes that don't fit: the Koch curve and a broccoli surface |
+| 02 | The Koch curve | one curve covered by 3 squares of side 1 and 12 of side 1/3, so (1/3)^-d = 4 |
+| 03 | Formal definition | Minkowski (box-counting) dimension, N(ε) ~ ε^-d |
 
 **Part II · Kakeya**
 
 | # | Section | What it shows |
 |---|---------|---------------|
-| 06 | Turn a needle | U-turns in a disk, triangle and deltoid; short history 1917–2025 |
-| 07 | Translation | moving to a parallel line costs area θ, so the problem becomes a Kakeya set |
-| 08 | Perron tree | 2ⁿ triangles slid together; area of the tree → 0 |
-| 09 | Dimension 2 | δ-tubes, multiplicity m(x), and the Cauchy–Schwarz argument |
+| 04 | Turn a needle | U-turns in a disk, triangle and deltoid; short history 1917–2025 |
+| 05 | Translation | moving to a parallel line costs area θ, so the problem becomes a Kakeya set |
+| 06 | Perron tree | 2ⁿ triangles slid together; area of the tree → 0 |
+| 07 | Dimension 2 | δ-tubes, multiplicity m(x), and the Cauchy–Schwarz argument |
 
 `T` toggles light/dark (light is often better on projectors), `F` is fullscreen.
 KaTeX and fonts are self-hosted in `site/vendor/`, so the page works offline.

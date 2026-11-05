@@ -1,6 +1,6 @@
 import { initKoch, renderKochCurve } from './panel-koch.js';
-import { initBoxes, renderMiniBoxes } from './panel-boxes.js';
-import { initBroccoli, romanesco } from './panel-broccoli.js';
+import { renderMiniBoxes } from './mini-boxes.js';
+import { romanesco } from './romanesco.js';
 import { onResize } from './util.js';
 import { initNeedle } from './panel-needle.js';
 import { initSlide } from './panel-slide.js';
@@ -49,7 +49,7 @@ function boot() {
 
   const modules = new Map();
   for (const [id, init] of [
-    ['p-koch', initKoch], ['p-boxes', initBoxes], ['p-broccoli', initBroccoli],
+    ['p-koch', initKoch],
     ['p-needle', initNeedle], ['p-slide', initSlide], ['p-perron', initPerron], ['p-cs', initTubes],
   ]) {
     const el = document.getElementById(id);

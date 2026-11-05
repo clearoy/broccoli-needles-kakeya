@@ -146,100 +146,13 @@
       </div>
     </section>
 
-    <!-- ───────────── 04 · Box decay ───────────── -->
-    <section class="panel" id="p-boxes" data-title="Box decay" data-part="I · Dimension">
-      <div class="panel-head">
-        <div class="kicker">04</div>
-        <h2>How fast does the cover vanish?</h2>
-      </div>
-      <div class="panel-body split boxes">
-        <div class="card canvas-card">
-          <canvas id="boxCanvas" aria-label="Box cover of the selected shape"></canvas>
-          <div class="hud hud-tl">
-            <div class="seg" id="shapeSeg">
-              <button class="seg-btn on" data-shape="line"><i class="sw s1"></i>Line</button>
-              <button class="seg-btn" data-shape="square"><i class="sw s2"></i>Square</button>
-              <button class="seg-btn" data-shape="koch"><i class="sw s3"></i>Koch</button>
-            </div>
-          </div>
-          <div class="hud hud-bl eps-ctl">
-            <button class="round-btn sm play" id="bPlay" aria-label="Play">
-              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-            </button>
-            <label class="eps-lbl mono" for="bEps">ε = <span id="bEpsTxt">1/2</span></label>
-            <input type="range" id="bEps" min="1" max="8" step="1" value="1">
-          </div>
-        </div>
-
-        <aside class="side boxes-side">
-          <div class="readouts">
-            <div class="ro"><span class="ro-lbl">$N(\varepsilon)$</span><span class="ro-val mono" id="bN">4</span></div>
-            <div class="ro"><span class="ro-lbl">$A(\varepsilon)=N\varepsilon^2$</span><span class="ro-val mono" id="bA">1.000</span></div>
-          </div>
-          <div class="card chart-card">
-            <svg id="decayChart" class="chart" role="img" aria-label="log-log plot of covered area against scale"></svg>
-            <div class="tip" id="chartTip" hidden></div>
-          </div>
-          <table class="dim-table" id="dimTable">
-            <thead><tr><th></th><th>decay rate</th><th>$d = 2 - \text{rate}$</th></tr></thead>
-            <tbody></tbody>
-          </table>
-          <div class="verdict accent">
-            $$A(\varepsilon)\;\sim\;\varepsilon^{\,2-d}$$
-            <div class="v-note center">dimension lost $=$ decay rate of the area</div>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <!-- ───────────── 05 · Broccoli ───────────── -->
-    <section class="panel" id="p-broccoli" data-title="Guess" data-part="I · Dimension">
-      <div class="panel-head">
-        <div class="kicker">05</div>
-        <h2>Your guess</h2>
-      </div>
-      <div class="panel-body split broc">
-        <div class="card canvas-card broc-card">
-          <canvas id="brocCanvas" aria-label="Romanesco broccoli, recursively generated"></canvas>
-          <div class="hud hud-bl mono hint" id="brocHint">click to zoom</div>
-          <div class="hud hud-br"><button class="ghost-btn" id="brocReset">reset</button></div>
-        </div>
-        <aside class="side broc-side">
-          <div class="question">$$\dim\ \partial\big(\text{broccoli}\big) = \ ?$$</div>
-
-          <div class="guess">
-            <div class="guess-val"><span class="mono" id="guessVal">2.30</span></div>
-            <div class="scale" id="scale">
-              <div class="scale-track"></div>
-              <div class="scale-mark you" id="markYou"></div>
-              <div class="scale-mark truth" id="markTruth"><span>≈ 2.66</span></div>
-              <div class="scale-ticks">
-                <span style="left:0%">2<em>surface</em></span>
-                <span style="left:50%">2.5</span>
-                <span style="left:100%">3<em>solid</em></span>
-              </div>
-            </div>
-            <input type="range" id="guess" min="2" max="3" step="0.01" value="2.30" aria-label="Your guess">
-          </div>
-
-          <div class="reveal-row">
-            <button class="primary-btn" id="revealBtn">Reveal</button>
-          </div>
-          <div class="answer reveal">
-            <div class="answer-big">$\approx 2.66$</div>
-            <div class="answer-src">box-counting on green broccoli · S.-H. Kim (2004) · cauliflower $\approx 2.88$</div>
-          </div>
-        </aside>
-      </div>
-    </section>
-
     <!-- ═════════════ Part II · Kakeya ═════════════ -->
     <div class="part-title"><small>PART II</small>The Kakeya problem</div>
 
-    <!-- ───────────── 06 · Needle ───────────── -->
+    <!-- ───────────── 04 · Needle ───────────── -->
     <section class="panel" id="p-needle" data-title="Needle" data-part="II · Kakeya">
       <div class="panel-head">
-        <div class="kicker">06</div>
+        <div class="kicker">04</div>
         <h2>Turn a unit needle around</h2>
       </div>
       <div class="panel-body needle">
@@ -286,10 +199,10 @@
       </div>
     </section>
 
-    <!-- ───────────── 07 · Translation ───────────── -->
+    <!-- ───────────── 05 · Translation ───────────── -->
     <section class="panel" id="p-slide" data-title="Translation" data-part="II · Kakeya">
       <div class="panel-head">
-        <div class="kicker">07</div>
+        <div class="kicker">05</div>
         <h2>Parallel moves are almost free</h2>
       </div>
       <div class="panel-body split">
@@ -320,10 +233,10 @@
       </div>
     </section>
 
-    <!-- ───────────── 08 · Perron tree ───────────── -->
+    <!-- ───────────── 06 · Perron tree ───────────── -->
     <section class="panel" id="p-perron" data-title="Perron tree" data-part="II · Kakeya">
       <div class="panel-head">
-        <div class="kicker">08</div>
+        <div class="kicker">06</div>
         <h2>The Perron tree</h2>
       </div>
       <div class="panel-body split">
@@ -358,10 +271,10 @@
       </div>
     </section>
 
-    <!-- ───────────── 09 · Dimension 2 ───────────── -->
+    <!-- ───────────── 07 · Dimension 2 ───────────── -->
     <section class="panel" id="p-cs" data-title="dim = 2" data-part="II · Kakeya">
       <div class="panel-head">
-        <div class="kicker">09</div>
+        <div class="kicker">07</div>
         <h2>Area → 0, but dimension = 2</h2>
       </div>
       <div class="panel-body split cs">
