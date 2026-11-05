@@ -458,6 +458,10 @@ kbd {
 .koch-cover { display: grid; grid-template-rows: minmax(0, 1fr) auto; gap: 2vh; align-items: center; }
 .koch-svg { width: 100%; height: 100%; min-height: 0; }
 .kc-sq { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 0.006; stroke-linejoin: round; }
+.kc-big { fill: none; stroke: var(--ink-2); stroke-width: 0.012; }
+.kc-dim { fill: none; stroke: var(--ink-2); stroke-width: 0.01; }
+.kc-dim-acc { stroke: var(--accent); }
+.kc-dim-lbl { fill: var(--ink); font-family: var(--serif); font-size: 0.16px; dominant-baseline: middle; }
 .kc-curve { fill: none; stroke: var(--ink); stroke-width: 0.009; stroke-linejoin: round; }
 .kc-lbl { fill: var(--ink-2); font-family: var(--mono); font-size: 0.085px; }
 .kc-arrow { stroke: var(--ink-3); stroke-width: 0.008; fill: none; }

@@ -37,36 +37,32 @@ const PIECES = [
 
 export function initKoch(panel) {
   const svg = panel.querySelector('#kochCover');
-  const GAP = 0.9, X2 = 1 + GAP; // left drawing on [0,1], right on [X2, X2+3]
-  const W = X2 + 3, TOP = 3 * H / 3 + 0.25;
-  svg.setAttribute('viewBox', `-0.08 ${-TOP} ${W + 0.16} ${TOP + 0.42}`);
+  // one curve of base 3: 3 squares of side 1, or 12 squares of side 1/3
+  svg.setAttribute('viewBox', '-0.5 -1.16 3.7 1.62');
 
-  const el = (tag, at, parent = svg) => {
+  const el = (tag, at) => {
     const e = document.createElementNS(SVG, tag);
     for (const k in at) e.setAttribute(k, at[k]);
-    parent.appendChild(e);
+    svg.appendChild(e);
     return e;
   };
-  const poly = (pts, dx, cls) => el('polygon', { points: pts.map(([x, y]) => `${x + dx},${-y}`).join(' '), class: cls });
-  const line = (pts, dx) => el('polyline', { points: pts.map(([x, y]) => `${x + dx},${-y}`).join(' '), class: 'kc-curve' });
-  const text = (x, y, str, cls) => { const t = el('text', { x, y, class: cls, 'text-anchor': 'middle' }); t.textContent = str; };
+  const pts = q => q.map(([x, y]) => `${x},${-y}`).join(' ');
+  const text = (x, y, str) => { const t = el('text', { x, y, class: 'kc-dim-lbl', 'text-anchor': 'middle' }); t.textContent = str; };
 
-  // small curve, 3 squares
-  BASE.forEach(q => poly(q, 0, 'kc-sq'));
-  line(koch(1, 5), 0);
-
-  // big curve, 12 squares
+  // 12 small squares: each of the 4 pieces reuses the unit curve's 3 squares
   for (const { a, phi } of PIECES) {
     const c = Math.cos(phi), s = Math.sin(phi);
-    BASE.forEach(q => poly(q.map(([x, y]) => [a[0] + c * x - s * y, a[1] + s * x + c * y]), X2, 'kc-sq'));
+    BASE.forEach(q => el('polygon', { points: pts(q.map(([x, y]) => [a[0] + c * x - s * y, a[1] + s * x + c * y])), class: 'kc-sq' }));
   }
-  line(koch(3, 6), X2);
+  // 3 big squares
+  for (let k = 0; k < 3; k++) el('rect', { x: k, y: -1, width: 1, height: 1, class: 'kc-big' });
+  el('polyline', { points: pts(koch(3, 6)), class: 'kc-curve' });
 
-  // labels
-  text(0.5, 0.3, '3 squares', 'kc-lbl');
-  text(X2 + 1.5, 0.3, '12 squares', 'kc-lbl');
-  text((1 + X2) / 2, -0.22, 'size ×3', 'kc-arrow-lbl');
-  el('path', { d: `M${1.12} -0.12 H${X2 - 0.12}`, class: 'kc-arrow', 'marker-end': 'url(#arr)' });
+  // side lengths: 1 on the first big square, 1/3 on the first small square
+  el('path', { d: 'M-0.16 0V-1M-0.2 0H-0.12M-0.2 -1H-0.12', class: 'kc-dim' });
+  text(-0.3, -0.47, '1');
+  el('path', { d: 'M0 0.12H0.3333M0 0.08V0.16M0.3333 0.08V0.16', class: 'kc-dim kc-dim-acc' });
+  text(0.1667, 0.3, '1/3');
 
   return { enter() {}, leave() {} };
 }
