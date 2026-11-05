@@ -250,7 +250,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .v-big { text-align: center; font-size: 1.35em; margin-top: .8vh; color: var(--accent); }
 
 /* ───────── 03 Definitions ───────── */
-.defs { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: minmax(0, 1fr) auto; gap: 2vh 2vw; }
+.defs { display: grid; grid-template-columns: minmax(0, 860px); justify-content: center; gap: 2vh 2vw; }
 .def-card { padding: 2.2vh 1.8vw; display: grid; grid-template-rows: auto auto minmax(0, 1fr); gap: 1vh; min-height: 0; align-items: center; }
 .def-tag {
   font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent);

@@ -126,49 +126,23 @@
     </section>
 
     <!-- ───────────── 03 · Formal definitions ───────────── -->
-    <section class="panel" id="p-defs" data-title="Definitions" data-part="I · Dimension">
+    <section class="panel" id="p-defs" data-title="Definition" data-part="I · Dimension">
       <div class="panel-head">
         <div class="kicker">03</div>
-        <h2>Two formal definitions</h2>
+        <h2>Formal definition</h2>
       </div>
       <div class="panel-body defs">
-        <article class="card def-card">
-          <header class="def-head"><span class="def-tag">Hausdorff</span></header>
-          <div class="def-math">
-            $$\mathcal{H}^s(E)=\lim_{\delta\to0}\ \inf\Big\{\sum_i(\operatorname{diam}U_i)^s \;:\; E\subset\bigcup_i U_i,\ \operatorname{diam}U_i\lt\delta\Big\}$$
-            $$\dim_H E=\inf\{s\ge 0:\ \mathcal{H}^s(E)=0\}$$
-          </div>
-          <svg class="jump" viewBox="0 0 420 150" aria-label="H^s(E) jumps from infinity to zero at the dimension">
-            <line x1="40" y1="120" x2="400" y2="120" class="axis"/>
-            <line x1="40" y1="120" x2="40" y2="14" class="axis"/>
-            <path d="M40 24H196" class="jump-line"/>
-            <path d="M212 120H396" class="jump-line"/>
-            <line x1="204" y1="18" x2="204" y2="126" class="jump-guide"/>
-            <circle cx="204" cy="72" r="5" class="jump-dot"/>
-            <text x="30" y="28" class="axis-lbl" text-anchor="end">∞</text>
-            <text x="30" y="124" class="axis-lbl" text-anchor="end">0</text>
-            <text x="204" y="144" class="axis-lbl strong svg-math" text-anchor="middle"><tspan font-style="normal">dim</tspan><tspan dy="4" font-size="12">H</tspan><tspan dy="-4"> E</tspan></text>
-            <text x="400" y="144" class="axis-lbl svg-math" text-anchor="end">s</text>
-            <text x="54" y="18" class="axis-lbl svg-math">𝓗<tspan dy="-7" font-size="12">s</tspan><tspan dy="7">(E)</tspan></text>
-          </svg>
-        </article>
-
         <article class="card def-card">
           <header class="def-head"><span class="def-tag">Minkowski (box-counting)</span></header>
           <div class="def-math">
             $$N(\varepsilon)=\min\#\{\varepsilon\text{-boxes covering }E\}$$
             $$\dim_M E=\lim_{\varepsilon\to0}\frac{\log N(\varepsilon)}{\log(1/\varepsilon)}$$
             <div class="def-alt">
-              $$\dim_M E \;=\; n-\lim_{\varepsilon\to0}\frac{\log \big|E_\varepsilon\big|}{\log \varepsilon}$$
+              $$N(\varepsilon)\sim \varepsilon^{-d}$$
             </div>
           </div>
           <svg class="boxes-mini" viewBox="0 0 420 150" aria-hidden="true" id="miniBoxes"></svg>
         </article>
-
-        <div class="defs-foot">
-          $$\dim_H E\;\le\;\underline{\dim}_M E\;\le\;\overline{\dim}_M E$$
-          <span class="foot-note">equal for the Koch curve: $\log 4/\log 3$</span>
-        </div>
       </div>
     </section>
 
