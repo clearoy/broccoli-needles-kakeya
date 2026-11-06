@@ -8,8 +8,21 @@ const STEP_MS = 900;  // per halving step
 const HOLD_MS = 2500; // pause on the finished tree, and on the starting triangle
 const AREA_T = B / 2; // area of the starting triangle (base B, height 1) = 1/√3
 
-// leftmost point the finished tree reaches
-const LEFT = Math.min(0, ...pieces(N, ALPHA, N).map(([x0, , ax]) => Math.min(x0, ax)));
+// horizontal centre of the pieces at build progress p
+function centre(p) {
+  let lo = Infinity, hi = -Infinity;
+  for (const [x0, x1, ax] of pieces(N, ALPHA, p, easeInOut)) { lo = Math.min(lo, x0, ax); hi = Math.max(hi, x1, ax); }
+  return (lo + hi) / 2;
+}
+// widest half-span needed to keep the tree centred with the original triangle [0, B] in view
+const HALF = (() => {
+  let m = B / 2;
+  for (let p = 0; p <= N; p += 0.05) {
+    const c = centre(p);
+    m = Math.max(m, c, B - c);
+  }
+  return m;
+})();
 
 function mix(h1, h2, t) {
   const a = parseInt(h1.slice(1), 16), b = parseInt(h2.slice(1), 16);
@@ -30,8 +43,9 @@ export function initPerron(panel) {
     ctx.clearRect(0, 0, w, h);
 
     // frame the finished tree and the original triangle together
-    const cxW = (LEFT + B) / 2;
-    const s = Math.min((w * 0.7) / (B - LEFT), h * 0.82);
+    // the view follows the tree so the motion stays centred
+    const cxW = centre(p);
+    const s = Math.min((w * 0.46) / HALF, h * 0.82);
     const X = x => w / 2 + (x - cxW) * s, Y = y => h / 2 + (0.5 - y) * s;
 
     // the original triangle
