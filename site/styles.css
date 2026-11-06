@@ -346,7 +346,7 @@ kbd {
 .hud-tr { top: 14px; right: 14px; }
 
 /* 06 needle */
-.needle { display: grid; grid-template-rows: minmax(0, 1fr) auto; gap: 2vh; }
+.needle { display: grid; grid-template-rows: minmax(0, 1fr); }
 .needle .split { min-height: 0; }
 .areas { display: flex; flex-direction: column; gap: 1.6vh; }
 .area-row {
@@ -363,13 +363,20 @@ kbd {
 .area-row.best .ar-bar i, .area-row.best .ar-v { background: var(--accent); color: var(--accent); }
 .area-row.best .ar-v { background: none; }
 .timeline {
-  list-style: none; margin: 0; padding: 1.4vh 0 0; border-top: 1px solid var(--line);
-  display: grid; grid-template-columns: repeat(5, 1fr); gap: 1vw;
+  list-style: none; margin: 0; padding: 0; position: relative; width: 100%;
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 1vw; text-align: center;
 }
-.timeline li { display: flex; flex-direction: column; gap: 2px; }
-.timeline b { font-family: var(--mono); font-weight: 500; font-size: 13px; color: var(--ink-3); }
-.timeline span { font-size: clamp(14px, 1.1vw, 18px); }
-.timeline em { font-style: normal; font-size: 13px; color: var(--ink-3); }
+/* the track runs through the dots, from the first to the last */
+.timeline::before { content: ""; position: absolute; top: 7px; left: 10%; right: 10%; height: 2px; background: var(--line-2); }
+.timeline li { position: relative; display: flex; flex-direction: column; align-items: center; gap: .5vh; padding-top: 28px; }
+.timeline li::before {
+  content: ""; position: absolute; top: 0; left: 50%; width: 16px; height: 16px; margin-left: -8px;
+  border-radius: 50%; background: var(--bg); border: 2px solid var(--ink-3);
+}
+.timeline b { font-family: var(--serif); font-weight: 400; font-size: clamp(22px, 2vw, 34px); color: var(--ink-2); line-height: 1; }
+.timeline span { font-size: clamp(15px, 1.25vw, 21px); }
+.timeline em { font-style: normal; font-size: clamp(13px, 1vw, 16px); color: var(--ink-3); }
+.timeline li.hot::before { background: var(--accent); border-color: var(--accent); }
 .timeline li.hot b, .timeline li.hot em { color: var(--accent); }
 
 /* 07 / 08 readouts */
@@ -431,7 +438,8 @@ kbd {
 .koch-eq .katex-display { margin: 0; }
 
 /* 05 Kakeya set definition */
-.kset { display: grid; place-items: center; font-size: clamp(22px, 2.9vw, 52px); }
+.kset { display: grid; grid-template-rows: minmax(0, 1fr) auto; justify-items: center; align-items: center; padding: 0 4vw 6vh; }
+.kset-def { font-size: clamp(22px, 2.9vw, 52px); }
 
 /* 06 Perron tree */
 .perron-side { gap: 5vh; }
