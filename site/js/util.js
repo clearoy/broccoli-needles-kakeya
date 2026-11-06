@@ -51,14 +51,14 @@ export function tween(ms, fn, done) {
 
 // A needle drawn as an arrow: dot on the tail, arrowhead on the head.
 export function drawNeedle(ctx, x0, y0, x1, y1, color, dpr, width = 3) {
-  const a = Math.atan2(y1 - y0, x1 - x0), hl = 14 * dpr;
+  const a = Math.atan2(y1 - y0, x1 - x0), hl = 26 * dpr;
   ctx.strokeStyle = color; ctx.fillStyle = color;
   ctx.lineWidth = width * dpr; ctx.lineCap = 'round';
   ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1 - Math.cos(a) * hl * 0.6, y1 - Math.sin(a) * hl * 0.6); ctx.stroke();
   ctx.beginPath();
   ctx.moveTo(x1, y1);
-  ctx.lineTo(x1 - hl * Math.cos(a - 0.4), y1 - hl * Math.sin(a - 0.4));
-  ctx.lineTo(x1 - hl * Math.cos(a + 0.4), y1 - hl * Math.sin(a + 0.4));
+  ctx.lineTo(x1 - hl * Math.cos(a - 0.5), y1 - hl * Math.sin(a - 0.5));
+  ctx.lineTo(x1 - hl * Math.cos(a + 0.5), y1 - hl * Math.sin(a + 0.5));
   ctx.closePath(); ctx.fill();
   ctx.beginPath(); ctx.arc(x0, y0, 4.5 * dpr, 0, 2 * Math.PI); ctx.fill();
 }
