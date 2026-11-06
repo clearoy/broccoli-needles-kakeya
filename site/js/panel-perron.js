@@ -6,6 +6,7 @@ const N = 8;
 const ALPHA = 0.84;   // overlap ratio that minimises the final area for N = 8 (see perron.js)
 const STEP_MS = 900;  // per halving step
 const HOLD_MS = 2500; // pause on the finished tree, and on the starting triangle
+const AREA_T = B / 2; // area of the starting triangle (base B, height 1) = 1/√3
 
 // leftmost point the finished tree reaches
 const LEFT = Math.min(0, ...pieces(N, ALPHA, N).map(([x0, , ax]) => Math.min(x0, ax)));
@@ -30,7 +31,7 @@ export function initPerron(panel) {
 
     // frame the finished tree and the original triangle together
     const cxW = (LEFT + B) / 2;
-    const s = Math.min((w * 0.86) / (B - LEFT), h * 0.8);
+    const s = Math.min((w * 0.7) / (B - LEFT), h * 0.82);
     const X = x => w / 2 + (x - cxW) * s, Y = y => h / 2 + (0.5 - y) * s;
 
     // the original triangle
@@ -47,7 +48,7 @@ export function initPerron(panel) {
       ctx.fill();
     });
 
-    $area.textContent = `${Math.round(unionArea(tris) * 100)}%`;
+    $area.textContent = (unionArea(tris) * AREA_T).toFixed(3);
   }
 
   function tick(now) {

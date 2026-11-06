@@ -180,19 +180,14 @@
         <div class="kicker">06</div>
         <h2>The Perron tree</h2>
       </div>
-      <div class="panel-body split">
+      <div class="panel-body perron">
         <div class="card canvas-card">
           <canvas id="perronCanvas" aria-label="Perron tree construction"></canvas>
+          <div class="hud hud-tr perron-area">
+            <span class="perron-lbl">area</span>
+            <span class="mono" id="pArea">0.577</span>
+          </div>
         </div>
-        <aside class="side perron-side">
-          <div class="perron-area">
-            <span class="ro-lbl">$|\,\text{tree}\,| \,/\, |T|$</span>
-            <span class="mono" id="pArea">100%</span>
-          </div>
-          <div class="perron-bound">
-            $$|\,\text{tree}\,| \;\le\; \big(\alpha^{2n} + 2(1-\alpha)\big)\,|T| \;\xrightarrow[\;n\to\infty\;]{}\; 0$$
-          </div>
-        </aside>
       </div>
     </section>
 
